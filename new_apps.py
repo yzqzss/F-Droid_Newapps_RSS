@@ -62,7 +62,7 @@ print('Sorting new packages...1')
 # package["metadata"]["added"]
 new_packages_names = list(new_packages)
 new_packages_added = [new_packages[package_name]['metadata']['added'] for package_name in new_packages_names]
-new_packages_added, new_packages_names = zip(*sorted(zip(new_packages_added, new_packages_names), reverse=True))
+new_packages_added, new_packages_names = zip(*sorted(zip(new_packages_added, new_packages_names), reverse=False))
 print('Sorting new packages...2')
 sorted_new_packages = {}
 for package_name in new_packages_names:
