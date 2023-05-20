@@ -53,8 +53,8 @@ print('Removing old packages...')
 new_packages = {}
 for package_name in packages:
     package = packages[package_name]
-    if package['metadata']['added']/1000 > now - 60*60*24*30*14:
-        print(package_name)
+    if package['metadata']['added']/1000 > now - 60*60*24*30:
+        # print(package_name)
         new_packages.update({package_name: package})
 
 print('Sorting new packages...1')
