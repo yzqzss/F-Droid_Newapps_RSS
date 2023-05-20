@@ -81,7 +81,7 @@ for lang in langs:
     feed = FeedGenerator()
     feed.title('New apps on F-Droid')
     feed.description('New apps on F-Droid')
-    feed.link(href='https://f-droid.org/en/packages/')
+    feed.link(href='https://f-droid.org/packages/')
     feed.language(lang)
     for package_name in sorted_new_packages:
         print(package_name)
@@ -96,7 +96,7 @@ for lang in langs:
             # fallback to firsr key
             title = package['metadata']['name'][list(package['metadata']['name'].keys())[0]]
         entry.title(title)
-        entry.link(href=f'https://f-droid.org/en/packages/{package_name}/')
+        entry.link(href=f'https://f-droid.org/packages/{package_name}/')
         # RSS description == F-Droid summary
         description = package['metadata'].get('summary', None)
         if description is not None:
