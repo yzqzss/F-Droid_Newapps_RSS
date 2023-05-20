@@ -22,7 +22,7 @@ def update_index():
     tqdmd = tqdm.tqdm(unit='B', unit_scale=True, desc='Fetching JSON from F-Droid')
     json_url = 'https://f-droid.org/repo/index-v2.json'
     r = requests.get(json_url, stream=True)
-    if r.headers.get('Etag', ' ') != etag:
+    if r.headers.get('Etag', ' ') != etag and os.path.exists(json_file_to_load) is False:
         data_io = io.BytesIO()
         for chunk in r.iter_content(chunk_size=1024):
             tqdmd.update(len(chunk))
@@ -39,9 +39,9 @@ def update_index():
         return True
     return False
 
-# if update_index() is False:
-#     print('No new packages.')
-#     sys.exit(0)
+if update_index() is False:
+    print('No new packages.')
+    sys.exit(0)
 
 with open(json_file_to_load, 'r') as f:
     print(f'Parsing JSON...')
