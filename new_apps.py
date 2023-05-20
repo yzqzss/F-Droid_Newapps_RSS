@@ -2,6 +2,7 @@ import requests
 import json
 import tqdm
 import sys
+from feedgen.feed import FeedGenerator
 import os
 import io
 import datetime
@@ -73,7 +74,6 @@ with open('new_apps.json', 'w') as f:
     print(f'Saving JSON to new_apps.json...')
     json.dump(sorted_new_packages, f, ensure_ascii=False, indent=4)
     print('Done.')
-from feedgen.feed import FeedGenerator
 
 from languages_config import langs
 for lang in langs:
