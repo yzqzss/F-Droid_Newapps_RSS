@@ -66,9 +66,9 @@ new_packages_added, new_packages_names = zip(*sorted(zip(new_packages_added, new
 print('Sorting new packages...2')
 sorted_new_packages = {}
 for package_name in new_packages_names[::-1]:
-    print(package_name, new_packages[package_name]['metadata']['added'])
+    print(new_packages[package_name]['metadata']['added'], package_name)
     sorted_new_packages.update({package_name: new_packages[package_name]})
-print(len(new_packages_names))
+print(len(sorted_new_packages))
 
 with open('new_apps.json', 'w') as f:
     print(f'Saving JSON to new_apps.json...')
