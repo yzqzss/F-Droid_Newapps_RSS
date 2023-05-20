@@ -1,0 +1,1 @@
+langs = ['en-US', 'fr', 'ja-JP', 'zh-CN', 'zh-TW', 'de-DE']
