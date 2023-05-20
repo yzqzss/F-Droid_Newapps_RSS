@@ -47,11 +47,11 @@ jobs:
         python new_apps.py
 
     - name: Upload github-pages Artifact
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v3
       with:
         # Artifact name
         name: github-pages
         path: rss/
     - name: Deploy GitHub Pages site
       id: deployment
-      uses: actions/deploy-pages@v2.0.1
+      uses: actions/deploy-pages@v1
