@@ -62,10 +62,10 @@ print('Sorting new packages...1')
 # package["metadata"]["added"]
 new_packages_names = list(new_packages)
 new_packages_added = [new_packages[package_name]['metadata']['added'] for package_name in new_packages_names]
-new_packages_added, new_packages_names = zip(*sorted(zip(new_packages_added, new_packages_names), reverse=False))
+new_packages_added, new_packages_names = zip(*sorted(zip(new_packages_added, new_packages_names), reverse=True))
 print('Sorting new packages...2')
 sorted_new_packages = {}
-for package_name in new_packages_names[::-1]:
+for package_name in new_packages_names:
     print(new_packages[package_name]['metadata']['added'], package_name)
     sorted_new_packages.update({package_name: new_packages[package_name]})
 print(len(sorted_new_packages))
@@ -84,8 +84,9 @@ for lang in langs:
     feed.link(href='https://f-droid.org/en/packages/')
     feed.language(lang)
     for package_name in sorted_new_packages:
+        print(package_name)
         package = sorted_new_packages[package_name]
-        entry = feed.add_entry()
+        entry = feed.add_entry(order='append')
         entry.guid(package_name, permalink=True)
         entry.pubDate(datetime.datetime.fromtimestamp(package['metadata']['added']/1000, tz=datetime.timezone.utc))
         entry.updated(datetime.datetime.fromtimestamp(package['metadata']['lastUpdated']/1000, tz=datetime.timezone.utc))
