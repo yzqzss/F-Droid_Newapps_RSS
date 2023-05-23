@@ -1,6 +1,6 @@
 venv
 index-v2.cache.json
 index-v2.etag.txt
-rss
+feed
 __pycache__
 new_apps.json
