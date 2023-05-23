@@ -63,8 +63,8 @@ def gen_feed_for_lang(repo: RepoConfig, sorted_new_packages: dict, lang: str):
     area_lang = lang.split('-')[1] if len(lang.split('-')) > 1 else None
     print('Generating ATOM feed...', lang)
     feed = FeedGenerator()
-    feed.title(f'New apps on F-Droid ({lang})')
-    feed.description(f'New apps on F-Droid ({lang})')
+    feed.title(f'New apps on {repo.name} ({lang})')
+    feed.description(f'New apps on {repo.name} ({lang})')
     feed.id(f'https://newapps.f-droid.othing.xyz/{repo.web_public_subdir}new_apps.{lang}.xml')
     feed.link( href=f'https://newapps.f-droid.othing.xyz/{repo.web_public_subdir}new_apps.{lang}.xml', rel='self' )
     feed.link(href=repo.package_homepage_url, rel='alternate')
