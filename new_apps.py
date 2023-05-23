@@ -41,7 +41,7 @@ def update_index():
 
 if update_index() is False:
     print('No new packages.')
-    sys.exit(0)
+    sys.exit(0) if not os.path.exists('devmode') else None
 
 with open(json_file_to_load, 'r') as f:
     print(f'Parsing JSON...')
@@ -95,7 +95,7 @@ for lang in langs:
         print(package_name)
         package = sorted_new_packages[package_name]
         entry = feed.add_entry(order='append')
-        entry.id(package_name)
+        entry.id(f'https://f-droid.org/packages/{package_name}/')
         entry.pubDate(datetime.datetime.fromtimestamp(package['metadata']['added']/1000, tz=datetime.timezone.utc))
         entry.updated(datetime.datetime.fromtimestamp(package['metadata']['lastUpdated']/1000, tz=datetime.timezone.utc))
         entry.author(name=package['metadata'].get('authorName', ''))
@@ -176,7 +176,7 @@ for lang in langs:
         if isinstance(content, str):
             content = content.replace('\n', '<br>')
         content = content if content else 'No description.'
-        entry.content(content, type='CDATA')
+        entry.content(content, type='html')
     feed.atom_file(f'feed/new_apps.{lang}.xml', pretty=True)
     feed.rss_file(f'feed/new_apps.{lang}.rss.xml', pretty=True)
 
