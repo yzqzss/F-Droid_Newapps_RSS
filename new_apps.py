@@ -201,12 +201,12 @@ def repo_gen_feed(repo: RepoConfig):
         gen_feed_for_lang(repo, sorted_new_packages, lang)
 
 def main():
-    gen_index_html(repos)
     for repo in repos:
         os.makedirs(repo.id, exist_ok=True)
         os.makedirs(web_pub_dir+repo.web_public_subdir, exist_ok=True)
         print(f'=== {repo.name} ===')
         repo_gen_feed(repo)
+    gen_index_html(repos)
 
 if __name__ == '__main__':
     main()
